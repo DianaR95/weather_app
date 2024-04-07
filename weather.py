@@ -1,5 +1,6 @@
 import json
 
+import emoji
 import requests
 
 
@@ -31,3 +32,19 @@ def summary_weather(url: str, key: str, city: str = "Bucharest"):
     except Exception as e:
         print(e)
 
+    finally:
+        if local_temp >= 25:
+            print(emoji.emojize(f"Outside is :fire:, there are {local_temp} C degrees."))
+        elif local_temp <25:
+            print(emoji.emojize(f"Outside is :check_mark:, there are {local_temp} C degrees."))
+        else:
+            print("Couldn't find data about weather.")
+
+        if "sun" or "clear" in local_info:
+            print(emoji.emojize(f"Weather is :sun:, can go for a walk."))
+        elif "cloud" in local_info:
+            print(emoji.emojize(f"Weather is :cloud:, better get an :closed_umbrella:."))
+        elif "rain" in local_info:
+            print(emoji.emojize(f"Weather is :cloud_with_lightning_and_rain:, you definetly need an :closed_umbrella:."))
+        else:
+            print("Couldn't find data about weather.")
