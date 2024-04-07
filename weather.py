@@ -17,3 +17,17 @@ def get_current_weather(url:str, key: str, city: str = "Bucharest"):
                             f"Message: {response.text}")
     except Exception as e:
         print(e)
+
+
+def summary_weather(url: str, key: str, city: str = "Bucharest"):
+    try:
+        response = requests.get(url + city, headers={"key": key})
+        if response.status_code == 200:
+            curr_weather_dict = json.loads(response.text)
+            local_info = curr_weather_dict['current']['condition']['text']
+            local_temp = curr_weather_dict['current']['temp_c']
+            return local_info, local_temp
+
+    except Exception as e:
+        print(e)
+

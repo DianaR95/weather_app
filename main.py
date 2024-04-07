@@ -19,4 +19,5 @@ if __name__ == '__main__':
     key = os.environ['weather_api_key']
     weather_dict = weather.get_current_weather(url=config['url'], key=key, city="Cluj")
     print(json.dumps(weather_dict, indent=4))
-
+    info_weather = weather.summary_weather(url=config['url'], key=key, city="Cluj")
+    print(json.dumps(info_weather, indent=4))
